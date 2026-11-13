@@ -1,0 +1,233 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InstaRecover Ultimate</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;background:#090d18;color:white;
+ font-family:Arial,sans-serif;
+}
+header{
+ padding:25px;text-align:center;
+ background:#111a2d;border-bottom:1px solid #293b58;
+}
+.logo{font-size:27px;font-weight:bold;color:#a78bfa}
+header p{color:#aab4c8;font-size:13px}
+.container{max-width:700px;margin:25px auto;padding:15px}
+.card{
+ background:#141e31;border:1px solid #293b58;
+ padding:22px;border-radius:16px;margin-bottom:18px;
+}
+h2{font-size:20px;margin-top:0}
+label{display:block;margin:15px 0 7px;color:#d5def0}
+input,select,textarea{
+ width:100%;padding:13px;border-radius:9px;
+ border:1px solid #354763;background:#0b1424;
+ color:white;font-size:15px;
+}
+textarea{min-height:100px;resize:vertical}
+button{
+ width:100%;padding:14px;border:0;border-radius:9px;
+ background:#8056e9;color:white;font-size:15px;
+ font-weight:bold;margin-top:12px;cursor:pointer;
+}
+button:hover{background:#6941d0}
+.secondary{background:#263a59}
+.result{display:none}
+.small{font-size:12px;color:#9caec8;line-height:1.7}
+a{color:#b9a1ff;text-decoration:none}
+.links a{
+ display:block;padding:13px 0;
+ border-bottom:1px solid #34425a;
+}
+.status{
+ padding:12px;background:#1d3044;
+ border-radius:9px;color:#9ee8c4;
+ font-size:13px;margin-bottom:15px;
+}
+footer{text-align:center;padding:25px;color:#8392a9;font-size:12px}
+</style>
+</head>
+
+<body>
+
+<header>
+ <div class="logo">✦ InstaRecover Ultimate</div>
+ <p>Advanced Instagram Account Recovery Assistant</p>
+</header>
+
+<div class="container">
+
+<div class="card">
+ <div class="status">● Recovery Assistant Ready</div>
+ <h2>Account Recovery Center</h2>
+ <p class="small">
+ Generate a personalized recovery appeal for your Instagram account.
+ </p>
+
+ <label>Instagram Username</label>
+ <input id="username" placeholder="@yourusername">
+
+ <label>Contact Email (optional)</label>
+ <input id="email" type="email" placeholder="your@email.com">
+
+ <label>Account Issue</label>
+ <select id="issue">
+  <option value="suspended">Account Suspended</option>
+  <option value="disabled">Account Disabled</option>
+  <option value="hacked">Account Hacked</option>
+  <option value="restricted">Account Restricted</option>
+  <option value="mistake">Disabled By Mistake</option>
+  <option value="review">Review Pending</option>
+ </select>
+
+ <label>When did the problem start?</label>
+ <input type="date" id="date">
+
+ <label>Explain Your Problem</label>
+ <textarea id="reason" placeholder="Explain what happened to your account..."></textarea>
+
+ <button onclick="generate()">Generate Ultimate Appeal</button>
+</div>
+
+<div class="card result" id="result">
+ <h2>Generated Appeal</h2>
+ <textarea id="appeal" rows="15" readonly></textarea>
+
+ <button onclick="copyAppeal()">Copy Appeal</button>
+ <button class="secondary" onclick="downloadAppeal()">Download Appeal</button>
+ <p id="message" class="small"></p>
+</div>
+
+<div class="card">
+ <h2>Recovery Checklist</h2>
+ <p class="small">Follow these steps before submitting an appeal.</p>
+
+ <label><input type="checkbox" style="width:auto"> Check Instagram email notifications</label>
+ <label><input type="checkbox" style="width:auto"> Check Account Status</label>
+ <label><input type="checkbox" style="width:auto"> Check official review option</label>
+ <label><input type="checkbox" style="width:auto"> Secure your email account</label>
+ <label><input type="checkbox" style="width:auto"> Submit truthful information</label>
+</div>
+
+<div class="card">
+ <h2>Official Recovery Links</h2>
+ <div class="links">
+  <a href="https://www.instagram.com/" target="_blank">Instagram Login ↗</a>
+  <a href="https://www.instagram.com/hacked/" target="_blank">Hacked Account Recovery ↗</a>
+  <a href="https://help.instagram.com/" target="_blank">Instagram Help Center ↗</a>
+  <a href="https://www.facebook.com/help/instagram/" target="_blank">Instagram Support ↗</a>
+ </div>
+</div>
+
+<div class="card">
+ <h2>Security Center</h2>
+ <p class="small">
+ InstaRecover Ultimate is an independent recovery assistant.
+ It cannot directly unlock, unban or restore Instagram accounts.
+ It does not connect to Instagram's internal systems.
+ Never enter your Instagram password, OTP or backup codes here.
+ Only use official Instagram verification and appeal processes.
+ </p>
+</div>
+
+</div>
+
+<footer>
+InstaRecover Ultimate © 2026<br>
+Independent Account Recovery Assistant
+</footer>
+
+<script>
+function generate(){
+
+ const username=document.getElementById("username").value.trim();
+ const email=document.getElementById("email").value.trim();
+ const issue=document.getElementById("issue").value;
+ const reason=document.getElementById("reason").value.trim();
+ const date=document.getElementById("date").value;
+
+ if(!username || !reason){
+  alert("Please enter username and explain your problem.");
+  return;
+ }
+
+ const titles={
+  suspended:"suspended",
+  disabled:"disabled",
+  hacked:"compromised",
+  restricted:"restricted",
+  mistake:"disabled by mistake",
+  review:"under review"
+ };
+
+ const appeal=`Subject: Request for Instagram Account Review
+
+Hello Instagram Support Team,
+
+I am the owner of the Instagram account ${username}.
+
+My account has been ${titles[issue]}.
+${date ? "The issue started on: "+date : ""}
+
+I respectfully request a review of my account.
+
+Details of my issue:
+
+${reason}
+
+I believe that a review of my account may help clarify this situation.
+
+I respect Instagram's Community Guidelines and Terms of Use.
+If any activity unintentionally violated a policy,
+I would appreciate clarification and an opportunity
+to resolve the issue.
+
+Please let me know if additional verification
+or information is required.
+
+${email ? "Contact Email: "+email : ""}
+
+Thank you for your time and consideration.
+
+Regards,
+${username}`;
+
+ document.getElementById("appeal").value=appeal;
+ document.getElementById("result").style.display="block";
+ document.getElementById("message").innerText="";
+ document.getElementById("result").scrollIntoView({behavior:"smooth"});
+}
+
+async function copyAppeal(){
+ const text=document.getElementById("appeal").value;
+ try{
+  await navigator.clipboard.writeText(text);
+  document.getElementById("message").innerText="Appeal copied successfully!";
+ }catch(e){
+  const field=document.getElementById("appeal");
+  field.select();
+  document.execCommand("copy");
+  document.getElementById("message").innerText="Select and copy if needed.";
+ }
+}
+
+function downloadAppeal(){
+ const text=document.getElementById("appeal").value;
+ const blob=new Blob([text],{type:"text/plain"});
+ const url=URL.createObjectURL(blob);
+ const a=document.createElement("a");
+ a.href=url;
+ a.download="InstaRecover-Appeal.txt";
+ a.click();
+ URL.revokeObjectURL(url);
+}
+</script>
+
+</body>
+</html>
